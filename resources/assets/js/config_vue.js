@@ -1,39 +1,33 @@
-import Vue from 'Vue';
+export default function(Vue){
+    Vue.transition('bounce', {
+        enterClass: 'bounceInLeft',
+        leaveClass: 'bounceOutRight'
+    });
 
-//This transitions require Animatecss loaded
+    Vue.transition('flip', {
+        enterClass: 'flipInX',
+        leaveClass: 'flipOutX'
+    });
 
-/*
-This is configuration for transitions on implementaion
- */
+    Vue.transition('lightSpeed', {
+        enterClass: 'lightSpeedIn',
+        leaveClass: 'lightSpeedOut'
+    });
 
-Vue.transition('bounce', {
-    enterClass: 'bounceInLeft',
-    leaveClass: 'bounceOutRight'
-});
+    Vue.transition('fade', {
+        enterClass: 'fadeIn',
+        leaveClass: 'fadeOut'
+    });
 
-Vue.transition('flip', {
-    enterClass: 'flipInX',
-    leaveClass: 'flipOutX'
-});
+    Vue.transition('slide', {
+        enterClass: 'slideInUp',
+        leaveClass: 'slideOutUp'
+    });
 
-Vue.transition('lightSpeed', {
-    enterClass: 'lightSpeedIn',
-    leaveClass: 'lightSpeedOut'
-});
+    Vue.transition('zoom', {
+        enterClass: 'zoomIn',
+        leaveClass: 'zoomOut'
+    });
 
-Vue.transition('fade', {
-    enterClass: 'fadeIn',
-    leaveClass: 'fadeOut'
-});
+}
 
-Vue.transition('slide', {
-    enterClass: 'slideInUp',
-    leaveClass: 'slideOutUp'
-});
-
-Vue.transition('zoom', {
-    enterClass: 'zoomIn',
-    leaveClass: 'zoomOut'
-});
-
-export default Vue;

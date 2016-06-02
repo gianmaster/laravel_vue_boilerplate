@@ -7,11 +7,26 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
 
-                <div class="panel-body">
+                <div class="panel-body" id="app">
                     You are logged in!
 
-                    <div id="app">
-                        <alert>Bienvenido al sistema</alert>
+                    <!--
+                    <div>
+                        <alert type="success">Bienvenido al sistema</alert>
+                    </div>
+
+                    <div>
+                        <modal :show.sync="showModal">
+                            <div slot="header">Mensaje del sistema</div>
+                            Pero q carajos
+                        </modal>
+                        <button class="btn btn-warning" @click="showModal=true">toggle modal</button>
+                    </div>
+                    -->
+                    <div>
+                        <crearmenu></crearmenu>
+                        <listarmenu></listarmenu>
+
                     </div>
                 </div>
             </div>
@@ -19,6 +34,6 @@
     </div>
 </div>
 
-<link rel="stylesheet" href="css/vendors/animate.css">
+
     <script src="js/main.js"></script>
 @endsection
