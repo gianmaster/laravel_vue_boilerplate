@@ -9,9 +9,16 @@
 
                 <div class="panel-body">
                     You are logged in!
+
+                    <div id="app">
+                        <alert>Bienvenido al sistema</alert>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<link rel="stylesheet" href="css/vendors/animate.css">
+    <script src="js/main.js"></script>
 @endsection
