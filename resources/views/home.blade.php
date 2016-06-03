@@ -23,9 +23,13 @@
                         <button class="btn btn-warning" @click="showModal=true">toggle modal</button>
                     </div>
                     -->
+                    <container-menu></container-menu>
+
                     <div>
+                        <!--
                         <crearmenu></crearmenu>
                         <listarmenu></listarmenu>
+                        -->
 
                     </div>
                 </div>
