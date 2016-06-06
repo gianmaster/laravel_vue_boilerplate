@@ -14726,23 +14726,28 @@ var _listaIconos = require('./listaIconos.vue');
 
 var _listaIconos2 = _interopRequireDefault(_listaIconos);
 
+var _SelectInput = require('../components/SelectInput.vue');
+
+var _SelectInput2 = _interopRequireDefault(_SelectInput);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
     data: function data() {
         return {
-            model: {}
+            model: {},
+            listaIconos: ['database', 'menu', 'dashboard', 'lista', 'users']
         };
     },
 
-
     components: {
         alert: _Alert2.default,
-        listaIconos: _listaIconos2.default
+        listaIconos: _listaIconos2.default,
+        comboList: _SelectInput2.default
     },
 
     ready: function ready() {
-        //this.model = this.modelInit();
+        this.model = this.modelInit();
     },
 
 
@@ -14764,7 +14769,7 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n    <!-- Titulo -->\n    <div class=\"col-xs-12\">\n        <validator name=\"validacion\">\n            <form novalidate=\"\">\n                <div class=\"form-group\">\n                    <label for=\"titulo\">Título</label>\n                    <input class=\"form-control\" name=\"titulo\" id=\"titulo\" v-model=\"model.titulo\" type=\"text\" v-validate:model.titulo=\"['required']\">\n                </div>\n\n                <!-- Icono -->\n                <lista-iconos :iconclass=\"model.icono\" :v-model=\"model.icono\"></lista-iconos>\n\n                <!-- Titulo -->\n                <div class=\"form-group\">\n                    <label for=\"ruta\">URL</label>\n                    <input class=\"form-control\" name=\"ruta\" id=\"ruta\" type=\"text\" v-model=\"model.ruta\">\n                </div>\n\n                <!-- Titulo -->\n                <div class=\"form-group\">\n                    <label for=\"tipo_menu\">Tipo Menu</label>\n                    <select name=\"tipo_menu\" id=\"tipo_menu\" :v-model=\"model.tipo_menu\" class=\"form-control\">\n                        <option value=\"PARENT\" selected=\"\">PADRE</option>\n                        <option value=\"CHILDREN\">HIJO</option>\n                    </select>\n\n                </div>\n\n                <!-- Orden -->\n                <div class=\"form-group\">\n                    <label for=\"orden\">Orden</label>\n                    <input class=\"form-control\" name=\"orden\" id=\"orden\" type=\"number\" number=\"\" min=\"0\" v-model=\"model.orden\">\n                </div>\n\n                <!-- Padre -->\n                <div class=\"form-group\">\n                    <label for=\"id_padre\">Padre</label>\n                    <input class=\"form-control\" name=\"id_padre\" id=\"id_padre\" type=\"text\" v-model=\"model.id_padre\">\n                </div>\n\n                <div class=\"form-group\">\n                    <input type=\"submit\" class=\"btn btn-success\" value=\"Guardar\" :disabled=\"!$validacion.valid\" @click.prevent=\"save\">\n                </div>\n\n                <div class=\"alert alert-danger\" v-if=\"!$validacion.valid\">\n                    <p>Título es requerido</p>\n                </div>\n\n                <!--\n                <alert v-if=\"!$validacion.valid\" type=\"danger\">\n                    <p v-if=\"$validacion.titulo.required\">Título es requerido.</p>\n                    <p v-if=\"$validacion.tipo_menu.maxlength\">Tipo de menu es requerido.</p>\n                </alert>\n                -->\n\n                \n            </form>\n        </validator>\n\n    </div>\n\n</div>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n    <!-- Titulo -->\n    <div class=\"col-xs-12\">\n        <validator name=\"validacion\">\n            <form novalidate=\"\">\n                <div class=\"form-group\">\n                    <label for=\"titulo\">Título</label>\n                    <input class=\"form-control\" name=\"titulo\" id=\"titulo\" v-model=\"model.titulo\" type=\"text\" v-validate:model.titulo=\"['required']\">\n                </div>\n\n                <!-- Icono -->\n                <combo-list :value.sync=\"model.icono\" :data=\"listaIconos\" label=\"Iconos\"></combo-list>\n\n\n                <!-- Titulo -->\n                <div class=\"form-group\">\n                    <label for=\"ruta\">URL</label>\n                    <input class=\"form-control\" name=\"ruta\" id=\"ruta\" type=\"text\" v-model=\"model.ruta\">\n                </div>\n\n                <!-- Titulo -->\n                <div class=\"form-group\">\n                    <label for=\"tipo_menu\">Tipo Menu</label>\n                    <select name=\"tipo_menu\" id=\"tipo_menu\" v-model=\"model.tipo_menu\" class=\"form-control\">\n                        -Nothing to do here-\n                        <option>PARENT</option>\n                        <option>CHILDREN</option>\n                    </select>\n\n                </div>\n\n                <!-- Orden -->\n                <div class=\"form-group\">\n                    <label for=\"orden\">Orden</label>\n                    <input class=\"form-control\" name=\"orden\" id=\"orden\" type=\"number\" number=\"\" min=\"0\" v-model=\"model.orden\">\n                </div>\n\n                <!-- Padre -->\n                <div class=\"form-group\">\n                    <label for=\"id_padre\">Padre</label>\n                    <input class=\"form-control\" name=\"id_padre\" id=\"id_padre\" type=\"text\" v-model=\"model.id_padre\">\n                </div>\n\n                <div class=\"form-group\">\n                    <input type=\"submit\" class=\"btn btn-success\" value=\"Guardar\" :disabled=\"!$validacion.valid\" @click.prevent=\"save\">\n                </div>\n\n                <div class=\"alert alert-danger\" v-if=\"!$validacion.valid\">\n                    <p>Título es requerido</p>\n                </div>\n\n                <!--\n                <alert v-if=\"!$validacion.valid\" type=\"danger\">\n                    <p v-if=\"$validacion.titulo.required\">Título es requerido.</p>\n                    <p v-if=\"$validacion.tipo_menu.maxlength\">Tipo de menu es requerido.</p>\n                </alert>\n                -->\n\n                \n            </form>\n        </validator>\n\n    </div>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -14774,12 +14779,12 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-7c1993f3", module.exports)
+    hotAPI.createRecord("_v-6438ba48", module.exports)
   } else {
-    hotAPI.update("_v-7c1993f3", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-6438ba48", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../components/Alert.vue":12,"./listaIconos.vue":11,"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],9:[function(require,module,exports){
+},{"../components/Alert.vue":13,"../components/SelectInput.vue":15,"./listaIconos.vue":12,"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],9:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n\n")
 'use strict';
@@ -14893,18 +14898,95 @@ var __vueify_style__ = __vueify_insert__.insert("\n\n")
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _SelectInput = require('../components/SelectInput.vue');
+
+var _SelectInput2 = _interopRequireDefault(_SelectInput);
+
+var _listaIconos = require('../app/listaIconos.vue');
+
+var _listaIconos2 = _interopRequireDefault(_listaIconos);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = {
     data: function data() {
         return {
-            iconClass: '',
+            icono: '3',
+            currentIcon: 'database',
+            //lista:['Ecuador', 'Brazil', 'Venezuela', 'Peru', 'Panama', 'Colombia']
+
+            lista: [{
+                id: 1,
+                text: 'Ecuador'
+            }, {
+                id: 2,
+                text: 'Peru'
+            }, {
+                id: 3,
+                text: 'Brazil'
+            }, {
+                id: 4,
+                text: 'Alemania'
+            }],
+            config: {
+                valueField: 'id',
+                displayField: 'text',
+                url: '/api/test'
+            }
+        };
+    },
+
+
+    components: {
+        comboList: _SelectInput2.default,
+        iconList: _listaIconos2.default
+    }
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"col-xs-12\">\n    <combo-list :value.sync=\"icono\" :data=\"lista\" :options=\"config\" label=\"Paises\"></combo-list>\n\n    <icon-list :icon-class.sync=\"currentIcon\"></icon-list>\n\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["\n\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-fb9cfcda", module.exports)
+  } else {
+    hotAPI.update("_v-fb9cfcda", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"../app/listaIconos.vue":12,"../components/SelectInput.vue":15,"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],12:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("\n\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    data: function data() {
+        return {
             lista: []
         };
     },
+
+    props: {
+        iconClass: {
+            type: String,
+            default: '',
+            required: true
+        }
+    },
+
     ready: function ready() {
         var self = this;
         this.$http({ url: 'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/src/icons.yml', method: 'GET' }).then(function (resp) {
             // success callback
-            //console.log(resp);
             resp.data.split('\n').forEach(function (item) {
                 if (item.split(':')[0].trim() == 'id') {
                     self.lista.push(item.split(':')[1].trim());
@@ -14917,7 +14999,7 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"form-group\">\n    <label>Icono - Font Awesome: <i class=\"fa fa-{{iconClass}}\"></i></label>\n    <select class=\"form-control\" v-model=\"iconClass\">\n        <option v-for=\"item in lista\" :value=\"item\" @mouseover=\"hoverEv(item)\">{{ item}}</option>\n    </select>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\n<div class=\"form-group\">\n    <label>Icono - Font Awesome: <i class=\"fa fa-{{iconClass}}\"></i></label>\n    <select class=\"form-control\" v-model=\"iconClass\">\n        <option v-for=\"item in lista\" :value=\"item\">{{ item}}</option>\n    </select>\n</div>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -14927,12 +15009,12 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-bc9a4a5a", module.exports)
+    hotAPI.createRecord("_v-51558ffc", module.exports)
   } else {
-    hotAPI.update("_v-bc9a4a5a", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-51558ffc", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],12:[function(require,module,exports){
+},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],13:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n\n")
 'use strict';
@@ -14952,7 +15034,7 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n    <div v-show=\"show\" class=\"animated alert alert-{{ type }}\" :transition=\"transitionName\">\n        <button @click=\"show = !show\" type=\"button\" class=\"close\">×</button>\n        <slot>Alerta a la vista</slot>\n    </div>\n\n<button class=\"btn btn-danger\" @click=\"show = !show\">toggle button</button>\n<select class=\"form-control\" name=\"efecto\" v-model=\"transitionName\" id=\"efecto\">\n    <option value=\"bounce\">Bonce</option>\n    <option value=\"flip\">Flip</option>\n    <option value=\"lightSpeed\">LightSpeed</option>\n    <option value=\"fade\">Fade</option>\n    <option value=\"slide\">Slide</option>\n    <option value=\"zoom\">Zoom</option>\n</select>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div v-show=\"show\" class=\"animated alert alert-{{ type }}\" :transition=\"transitionName\">\n    <button @click=\"show = !show\" type=\"button\" class=\"close\">×</button>\n    <slot>Alerta a la vista</slot>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -14967,7 +15049,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-1dfbb0cf", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],13:[function(require,module,exports){
+},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],14:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n\n.close-x{\n    cursor: pointer;\n    float: right;\n    color: darkgray;\n}\n\n.modal-mask {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, .5);\n    display: table;\n}\n\n.modal-wrapper {\n    display: table-cell;\n    vertical-align: middle;\n}\n\n.modal-container {\n    width: 300px;\n    margin: 0px auto;\n    padding: 10px 10px 10px 10px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n    font-family: Helvetica, Arial, sans-serif;\n}\n\n.modal-body {\n    margin: 20px 0;\n}\n\n.modal-header{\n    font-size: 1.4em;\n}\n\n\n\n\n")
 "use strict";
@@ -15002,7 +15084,108 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-1309dcc0", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],14:[function(require,module,exports){
+},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],15:[function(require,module,exports){
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("\n\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    /*
+    data(){
+        return{
+            label: 'Etiqueta',
+            value:'',
+            data:[],
+            optionLabel: '--Seleccione--',
+            options:{
+                valueField:'',
+                displayField:'',
+                url:'',
+                method: 'GET'//POST or GET
+            }
+        }
+    },
+    */
+    props: {
+        options: {
+            type: Object,
+            default: function _default() {
+                return {
+                    valueField: '',
+                    displayField: '',
+                    url: '',
+                    method: 'GET' //POST or GET
+                };
+            },
+            required: false
+        },
+        data: {
+            type: Array,
+            default: [],
+            required: false
+        },
+        label: {
+            type: String,
+            required: false,
+            default: 'Etiqueta'
+        },
+        value: {
+            type: String,
+            required: true,
+            default: ''
+        },
+        optionLabel: {
+            type: String,
+            required: false,
+            default: '--Seleccione--'
+        }
+    },
+
+    ready: function ready() {
+        var _options = this.options;
+        var url = _options.url;
+        var method = _options.method;
+
+        if (url) {
+            this.$http({ url: url, method: method }).then(function (response) {
+                // success callback
+                this.data = response.data.data;
+            }, function (err) {
+                // error callback
+                console.log(err);
+            });
+        }
+    },
+
+    methods: {
+        getId: function getId(item) {
+            return item[this.options.valueField];
+        },
+        getDescription: function getDescription(item) {
+            return item[this.options.displayField];
+        }
+    }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"form-group\">\n    <label for=\"select_input\">{{label}}</label>\n    <select class=\"form-control\" name=\"select_input\" id=\"select_input\" v-model=\"value\">\n        <option v-if=\"value == '' \" value=\"\" selected=\"\" disabled=\"\">{{optionLabel}}</option>\n        <option v-if=\"!options.valueField\" :value=\"item\" v-for=\"item in data\" track-by=\"$index\">{{ item }}</option>\n        <option v-if=\"options.valueField.length\" value=\"{{getId(item)}}\" v-for=\"item in data\" track-by=\"$index\">{{ getDescription(item) }} </option>\n    </select>\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["\n\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-3f6ee33e", module.exports)
+  } else {
+    hotAPI.update("_v-3f6ee33e", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -15041,7 +15224,7 @@ exports.default = function (Vue) {
     });
 };
 
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 var _Vue = require('Vue');
@@ -15080,6 +15263,10 @@ var _ContainerMenu = require('./app/ContainerMenu.vue');
 
 var _ContainerMenu2 = _interopRequireDefault(_ContainerMenu);
 
+var _Tester = require('./app/Tester.vue');
+
+var _Tester2 = _interopRequireDefault(_Tester);
+
 var _listaIconos = require('./app/listaIconos.vue');
 
 var _listaIconos2 = _interopRequireDefault(_listaIconos);
@@ -15088,6 +15275,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _Vue2.default.use(_vueResource2.default);
 _Vue2.default.use(_vueValidator2.default);
+
+_Vue2.default.config.devtools = true;
 
 (0, _config_vue2.default)(_Vue2.default);
 
@@ -15102,10 +15291,10 @@ new _Vue2.default({
         crearmenu: _MenuCrear2.default,
         listarmenu: _MenuListar2.default,
         iconlist: _listaIconos2.default,
-        containerMenu: _ContainerMenu2.default
+        containerMenu: _Tester2.default
     }
 });
 
-},{"./app/ContainerMenu.vue":8,"./app/MenuCrear.vue":9,"./app/MenuListar.vue":10,"./app/listaIconos.vue":11,"./components/Alert.vue":12,"./components/Modal.vue":13,"./config_vue":14,"Vue":1,"vue-resource":4,"vue-validator":5}]},{},[15]);
+},{"./app/ContainerMenu.vue":8,"./app/MenuCrear.vue":9,"./app/MenuListar.vue":10,"./app/Tester.vue":11,"./app/listaIconos.vue":12,"./components/Alert.vue":13,"./components/Modal.vue":14,"./config_vue":16,"Vue":1,"vue-resource":4,"vue-validator":5}]},{},[17]);
 
 //# sourceMappingURL=main.js.map

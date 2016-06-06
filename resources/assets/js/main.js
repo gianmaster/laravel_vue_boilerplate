@@ -5,6 +5,8 @@ import VueValidator from 'vue-validator'
 Vue.use(VueResource);
 Vue.use(VueValidator);
 
+Vue.config.devtools = true;
+
 import PrepareVue from './config_vue';
 
 import Alert from './components/Alert.vue';
@@ -13,6 +15,7 @@ import MenuCrear from './app/MenuCrear.vue';
 import MenuListar from './app/MenuListar.vue';
 
 import CMenu from './app/ContainerMenu.vue';
+import Tester from './app/Tester.vue';
 
 import listaIconos from './app/listaIconos.vue';
 
@@ -29,7 +32,7 @@ new Vue({
         crearmenu: MenuCrear,
         listarmenu: MenuListar,
         iconlist: listaIconos,
-        containerMenu: CMenu
+        containerMenu: Tester
     }
 });
 

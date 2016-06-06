@@ -24,6 +24,28 @@ Route::group(['prefix' => 'api', 'middleware' => ['api']], function(){
     //apis
     Route::resource('menu', 'MenuController');
 
+    //test api
+    Route::get('test', function(){
+        return response()->json(array('data' => [
+            [
+                'id'    => 1,
+                'text'  => 'Brazil'
+            ],
+            [
+                'id'    => 2,
+                'text'  => 'Ecuador'
+            ],
+            [
+                'id'    => 3,
+                'text'  => 'Venezuela'
+            ],
+            [
+                'id'    => 4,
+                'text'  => 'Argentina'
+            ],
+        ]));
+    });
+
 });
 
 

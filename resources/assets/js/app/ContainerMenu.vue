@@ -10,7 +10,8 @@
                     </div>
 
                     <!-- Icono -->
-                    <lista-iconos :iconClass="model.icono" :v-model="model.icono"></lista-iconos>
+                    <combo-list :value.sync="model.icono" :data="listaIconos"  label="Iconos"></combo-list>
+
 
                     <!-- Titulo -->
                     <div class="form-group">
@@ -21,9 +22,10 @@
                     <!-- Titulo -->
                     <div class="form-group">
                         <label for="tipo_menu">Tipo Menu</label>
-                        <select name="tipo_menu" id="tipo_menu" :v-model="model.tipo_menu" class="form-control">
-                            <option value="PARENT" selected>PADRE</option>
-                            <option value="CHILDREN">HIJO</option>
+                        <select name="tipo_menu" id="tipo_menu" v-model="model.tipo_menu" class="form-control">
+                            <opption selected disabled>-Nothing to do here-</opption>
+                            <option>PARENT</option>
+                            <option>CHILDREN</option>
                         </select>
 
                     </div>
@@ -62,8 +64,8 @@
         </div>
 
     </div>
-
 </template>
+
 <style>
 
 </style>
@@ -71,21 +73,24 @@
 
     import Alert from '../components/Alert.vue';
     import ListaIconos from './listaIconos.vue';
+    import Select from '../components/SelectInput.vue';
 
     export default{
+
         data(){
             return{
-                model: {}
+                model:{},
+                listaIconos:['database','menu', 'dashboard', 'lista', 'users']
             }
         },
-
         components: {
             alert: Alert,
-            listaIconos:ListaIconos
+            listaIconos:ListaIconos,
+            comboList:Select
         },
 
         ready(){
-            //this.model = this.modelInit();
+            this.model = this.modelInit();
         },
 
         methods: {
@@ -96,11 +101,11 @@
             modelInit: function(){
                 return {
                     titulo: '',
-                            icono: '',
-                            ruta: '',
-                            tipo_menu: '',
-                            orden: 0,
-                            id_padre: null
+                    icono: '',
+                    ruta: '',
+                    tipo_menu: '',
+                    orden: 0,
+                    id_padre: null
                 }
             }
         }
